@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 500px) {
+  html,
+  body {
+    font-size: 3.16667vw;
+  }
+}
+
+#root {
+  width: 500px;
+  display: flex;
+  justify-content: center;
+}
