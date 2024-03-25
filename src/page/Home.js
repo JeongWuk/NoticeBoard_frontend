@@ -1,9 +1,9 @@
-import Button from "../component/Button";
+import CreateButton from "../component/CreateButton";
 
 const Home = () => {
   return (
     <>
-      <Button>그리기</Button>
+      <CreateButton></CreateButton>
     </>
   );
 };
