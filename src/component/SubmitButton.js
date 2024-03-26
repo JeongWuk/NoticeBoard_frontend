@@ -1,24 +1,26 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import createImage from "../assets/images/write.png";
+import submitImage from "../assets/images/submit.png";
 
-const CreateButton = () => {
+const SubmitButton = (props) => {
   const navigate = useNavigate();
+  const { onClick } = props;
 
-  const moveToCreate = () => {
-    navigate("/create");
+  const moveToHome = (event) => {
+    onClick(event);
+    navigate("/");
   };
 
   return (
     <ButtonContainer>
-      <ButtonContent onClick={() => moveToCreate()}>
-        <CreateButtonImage src={createImage} alt="createImage" />
+      <ButtonContent onClick={(e) => moveToHome(e)}>
+        <SubmitButtonImage src={submitImage} alt="submitImage" />
       </ButtonContent>
     </ButtonContainer>
   );
 };
 
-export default CreateButton;
+export default SubmitButton;
 
 const ButtonContainer = styled.div`
   width: 100%;
@@ -52,7 +54,7 @@ const ButtonContent = styled.div`
   }
 `;
 
-const CreateButtonImage = styled.img`
+const SubmitButtonImage = styled.img`
   width: auto;
   height: 100%;
 `;

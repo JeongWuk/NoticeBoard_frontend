@@ -1,16 +1,19 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { createAPI } from "../api";
+import SubmitButton from "../component/SubmitButton";
 
 const Create = () => {
   const [formData, setFormData] = useState({
     writer: "",
     password: "",
     title: "",
-    content: "",
+    content: "abc",
   });
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    await createAPI(formData);
   };
 
   const handleInputChange = (event) => {
@@ -23,17 +26,30 @@ const Create = () => {
 
   return (
     <CreateContainer>
-      <FormContainer onSubmit={handleSubmit}>
+      <FormContainer onSubmit={(e) => handleSubmit(e)}>
         <WriterContainer>
-          <Writer type="text" user placeholder="이름" />
+          <Writer
+            type="text"
+            user
+            placeholder="이름"
+            name="writer"
+            onChange={(e) => handleInputChange(e)}
+          />
           <Password
             type="password"
             placeholder="비밀번호"
             autoComplete="current-password"
+            name="password"
+            onChange={(e) => handleInputChange(e)}
           />
         </WriterContainer>
-        <CreateTitle placeholder="제목을 입력해주세요." />
+        <CreateTitle
+          placeholder="제목을 입력해주세요."
+          name="title"
+          onChange={(e) => handleInputChange(e)}
+        />
       </FormContainer>
+      <SubmitButton onClick={handleSubmit} />
     </CreateContainer>
   );
 };
