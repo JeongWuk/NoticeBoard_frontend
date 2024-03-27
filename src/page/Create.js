@@ -69,6 +69,7 @@ const FormContainer = styled.form`
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  margin-top: 1rem;
 `;
 
 const WriterContainer = styled.div`

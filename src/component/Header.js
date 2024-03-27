@@ -38,7 +38,6 @@ export default Header;
 
 const HeaderContainer = styled.div`
   width: 100%;
-  height: 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -69,14 +68,13 @@ const Ham = styled.img`
 const Icon = styled.div`
   height: 100%;
   position: absolute;
-  top: 0;
   left: 0;
   cursor: pointer;
 `;
 
 const IconImage = styled.img`
-  width: auto;
-  height: 100%;
+  width: 3rem;
+  height: 3rem;
 `;
 
 const PageTitle = styled.div`
@@ -85,4 +83,5 @@ const PageTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 3rem;
 `;
