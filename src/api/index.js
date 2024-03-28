@@ -19,3 +19,12 @@ export const getBoardListAPI = async () => {
     throw new Error("Failed to create resource");
   }
 };
+
+export const getBoardItemAPI = async (id) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/board/${id}`);
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to create resource");
+  }
+};

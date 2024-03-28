@@ -1,11 +1,11 @@
 import { useQuery } from "react-query";
 import styled from "styled-components";
 import { getBoardListAPI } from "../api";
+import { useNavigate } from "react-router-dom";
 
 const BoardList = () => {
   const { data, isLoading, isError } = useQuery("boardList", getBoardListAPI);
-
-  console.log(data);
+  const navigate = useNavigate();
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -20,7 +20,10 @@ const BoardList = () => {
       {data && (
         <BoardListContainer>
           {data.data.map((board, index) => (
-            <BoardItem key={index}>
+            <BoardItem
+              key={index}
+              onClick={() => navigate(`/detail/${board.idx}`)}
+            >
               <BoardTitle>{board.title}</BoardTitle>
               <BoardSubContainer>
                 <BoardWriter>{board.writer}</BoardWriter>
