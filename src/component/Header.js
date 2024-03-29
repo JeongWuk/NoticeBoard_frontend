@@ -3,10 +3,29 @@ import logo from "../assets/images/logo.png";
 import { useLocation } from "react-router-dom";
 import back from "../assets/images/back.png";
 import { useNavigate } from "react-router-dom";
+import create from "../assets/images/create.png";
+import detail from "../assets/images/detail.png";
 
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
+
+  let pageTitleImage = null;
+
+  switch (location.pathname.split("/")[1]) {
+    case "":
+      pageTitleImage = logo;
+      break;
+    case "create":
+      pageTitleImage = create;
+      break;
+    case "detail":
+      pageTitleImage = detail;
+      break;
+    default:
+      pageTitleImage = null;
+      break;
+  }
 
   return (
     <HeaderContainer>
@@ -23,12 +42,12 @@ const Header = () => {
           </Menu>
         </>
       ) : (
-        <>
+        <PageTitleContainer>
           <Icon onClick={() => navigate("/")}>
             <IconImage src={back} alt="backIcon" />
           </Icon>
-          <PageTitle>{location.pathname}</PageTitle>
-        </>
+          <PageTitle src={pageTitleImage} alt="page-image" />
+        </PageTitleContainer>
       )}
     </HeaderContainer>
   );
@@ -38,6 +57,7 @@ export default Header;
 
 const HeaderContainer = styled.div`
   width: 100%;
+  height: 4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -65,6 +85,14 @@ const Ham = styled.img`
   height: 100%;
 `;
 
+const PageTitleContainer = styled.div`
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Icon = styled.div`
   height: 100%;
   position: absolute;
@@ -77,11 +105,7 @@ const IconImage = styled.img`
   height: 3rem;
 `;
 
-const PageTitle = styled.div`
-  width: 100%;
-  font-size: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 3rem;
+const PageTitle = styled.img`
+  height: 100%;
+  width: auto;
 `;

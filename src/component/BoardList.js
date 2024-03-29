@@ -1,11 +1,22 @@
 import { useQuery } from "react-query";
 import styled from "styled-components";
 import { getBoardListAPI } from "../api";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const BoardList = () => {
-  const { data, isLoading, isError } = useQuery("boardList", getBoardListAPI);
+  const { data, isLoading, isError, refetch } = useQuery(
+    "boardList",
+    getBoardListAPI
+  );
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/") {
+      refetch();
+    }
+  }, [location.pathname, refetch]);
 
   if (isLoading) {
     return <div>Loading...</div>;
