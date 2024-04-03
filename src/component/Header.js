@@ -5,10 +5,14 @@ import back from "../assets/images/back.png";
 import { useNavigate } from "react-router-dom";
 import create from "../assets/images/create.png";
 import detail from "../assets/images/detail.png";
+import login from "../assets/images/login.png";
+import Menu from "./Menu";
+import { useState } from "react";
 
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
 
   let pageTitleImage = null;
 
@@ -22,34 +26,40 @@ const Header = () => {
     case "detail":
       pageTitleImage = detail;
       break;
+    case "login":
+      pageTitleImage = login;
+      break;
     default:
       pageTitleImage = null;
       break;
   }
 
   return (
-    <HeaderContainer>
-      {location.pathname === "/" ? (
-        <>
-          <Logo>
-            <LogoImage src={logo} alt="logo" />
-          </Logo>
-          <Menu>
-            <Ham
-              src={"https://cdn.banggooso.com/assets/images/icons/menu_2.png"}
-              alt="ham"
-            />
-          </Menu>
-        </>
-      ) : (
-        <PageTitleContainer>
-          <Icon onClick={() => navigate("/")}>
-            <IconImage src={back} alt="backIcon" />
-          </Icon>
-          <PageTitle src={pageTitleImage} alt="page-image" />
-        </PageTitleContainer>
-      )}
-    </HeaderContainer>
+    <>
+      <HeaderContainer>
+        {location.pathname === "/" ? (
+          <>
+            <Logo>
+              <LogoImage src={logo} alt="logo" />
+            </Logo>
+            <MenuContainer onClick={() => setIsOpen(!isOpen)}>
+              <Ham
+                src={"https://cdn.banggooso.com/assets/images/icons/menu_2.png"}
+                alt="ham"
+              />
+            </MenuContainer>
+          </>
+        ) : (
+          <PageTitleContainer>
+            <Icon onClick={() => navigate("/")}>
+              <IconImage src={back} alt="backIcon" />
+            </Icon>
+            <PageTitle src={pageTitleImage} alt="page-image" />
+          </PageTitleContainer>
+        )}
+      </HeaderContainer>
+      <Menu isOpen={isOpen} setIsOpen={setIsOpen} />
+    </>
   );
 };
 
@@ -74,7 +84,7 @@ const LogoImage = styled.img`
   height: auto;
 `;
 
-const Menu = styled.div`
+const MenuContainer = styled.div`
   width: 3rem;
   height: 3rem;
   padding: 0.5rem;
@@ -94,9 +104,10 @@ const PageTitleContainer = styled.div`
 `;
 
 const Icon = styled.div`
-  height: 100%;
   position: absolute;
+  top: 50%;
   left: 0;
+  transform: translateY(-50%);
   cursor: pointer;
 `;
 

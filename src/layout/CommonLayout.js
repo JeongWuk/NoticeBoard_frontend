@@ -21,4 +21,5 @@ const Common = styled.div`
   align-items: center;
   font-size: 16px;
   position: relative;
+  overflow: hidden;
 `;
