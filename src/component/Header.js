@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import create from "../assets/images/create.png";
 import detail from "../assets/images/detail.png";
 import login from "../assets/images/login.png";
+import signup from "../assets/images/signup.png";
 import Menu from "./Menu";
 import { useState } from "react";
 
@@ -28,6 +29,9 @@ const Header = () => {
       break;
     case "login":
       pageTitleImage = login;
+      break;
+    case "signup":
+      pageTitleImage = signup;
       break;
     default:
       pageTitleImage = null;
